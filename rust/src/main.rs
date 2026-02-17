@@ -24,6 +24,11 @@ pub enum StitchMode {
 fn main() {
     let args = std::env::args().collect::<Vec<_>>();
 
+    if args.len() < 2 {
+        println!("Usage: cmd config_file.json");
+        return;
+    }
+
     if args[1] == "normalize" {
         if args.len() < 3 {
             println!("Usage: cmd normalize file.tiff");
@@ -40,11 +45,6 @@ fn main() {
         }
 
         normalize2(Path::new(&args[2]), dim_mask);
-        return;
-    }
-
-    if args.len() < 2 {
-        println!("Usage: cmd config_file.json");
         return;
     }
 
