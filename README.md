@@ -58,3 +58,15 @@ You can then run `stitch <path_to_stitch_config_file>` to run stitching. The res
 ## Stitch Config Generator UI
 
 Additionally, you can go to https://webstitch.app/ to easily generate configuration files for both this program and ImageJ.
+
+## Using Docker Container
+
+build
+```
+docker build -t stitch-rs .
+```
+
+run
+```
+docker run --rm -v ./workdir:/workdir stitch-rs /workdir/config_file.json
+```
