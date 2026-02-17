@@ -737,7 +737,7 @@ fn stitch_2d(config: StitchConfig) {
                 offset,
                 config.fuse_mode,
             );
-            let output_file = format!("fused_{}.png", i);
+            let output_file = format!("fused_{}.tiff", i);
             let buf = config.output_path.join(output_file);
             save_image_2d(&buf, &fused_image);
         });
