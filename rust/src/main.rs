@@ -14,6 +14,7 @@ mod fuse;
 mod image;
 mod stitch2d;
 mod stitch3d;
+mod fuse_cli;
 
 #[derive(PartialEq, Clone, Copy, Debug)]
 pub enum StitchMode {
@@ -25,7 +26,32 @@ fn main() {
     let args = std::env::args().collect::<Vec<_>>();
 
     if args.len() < 2 {
-        println!("Usage: cmd config_file.json");
+        println!("Usage: cmd config_file.json or cmd normalize file.tiff or cmd fuse fuse_config.json");
+        return;
+    }
+
+    if args[1] == "fuse" {
+        if args.len() < 5 {
+            println!("Usage: cmd fuse fuse_config.json config_file.json out.tiff");
+            return;
+        }
+        let config_path = Path::new(&args[3]);
+        if !config_path.exists() {
+            println!("Config file does not exist");
+            return;
+        }
+
+        let fuse_config_path = Path::new(&args[2]);
+        if !fuse_config_path.exists() {
+            println!("Fuse config file does not exist");
+            return;
+        }
+
+        let out_path = Path::new(&args[4]).to_path_buf();
+
+        let fused_image = fuse_cli::fuse(&config_path,&fuse_config_path);
+        
+        save_image_2d(&out_path, &fused_image);
         return;
     }
 
