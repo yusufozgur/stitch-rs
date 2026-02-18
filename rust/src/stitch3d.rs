@@ -6,7 +6,7 @@ use transpose::transpose;
 
 use crate::image::{Image3D, Image3DFile};
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct IBox3D {
     pub x: i64,
     pub y: i64,
