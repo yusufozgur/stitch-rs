@@ -286,7 +286,7 @@ pub fn read_config_file(path: &Path) -> StitchConfig {
     if !json.get("no_fuse").is_none() {
         config.no_fuse = json["no_fuse"].as_bool().unwrap();
 
-        println!("No fuse: {}", config.no_fuse);
+        // println!("No fuse: {}", config.no_fuse);
     }
 
     // Check prior
