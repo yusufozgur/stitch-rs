@@ -34,7 +34,7 @@ pub enum StitchMode {
     ThreeD,
 }
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct StitchConfig {
     pub version: String,
     pub mode: StitchMode,
